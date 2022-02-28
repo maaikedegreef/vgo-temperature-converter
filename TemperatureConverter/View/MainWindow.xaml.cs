@@ -28,18 +28,18 @@ namespace View
         private void ConvertToCelsius(object sender, RoutedEventArgs e)
         {
 
-            double f = double.Parse(fTextBox.Text);
+            double f = double.Parse(fahrenheitTextBox.Text);
             double c = Math.Round((f - 32) * 0.5556,2);
             string s = c.ToString();
-            frTextBox.Text = s;
+            celsiusTextBox.Text = s;
         }
 
         private void ConvertToFahrenheit(object sender, RoutedEventArgs e)
         {
-            double c = double.Parse(celcTextBox.Text);
+            double c = double.Parse(celsiusTextBox.Text);
             double f = Math.Round((c * 1.8) + 32, 2);
             string s = f.ToString();
-            crTextBox.Text = s;
+            fahrenheitTextBox.Text = s;
         }
     }
 }
