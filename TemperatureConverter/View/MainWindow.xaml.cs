@@ -27,10 +27,19 @@ namespace View
 
         private void ConvertToCelsius(object sender, RoutedEventArgs e)
         {
-            double f = double.Parse(textBox.Text);
+
+            double f = double.Parse(fTextBox.Text);
             double c = Math.Round((f - 32) * 0.5556,2);
             string s = c.ToString();
-            textBox.Text = s;
+            frTextBox.Text = s;
+        }
+
+        private void ConvertToFahrenheit(object sender, RoutedEventArgs e)
+        {
+            double c = double.Parse(celcTextBox.Text);
+            double f = Math.Round((c * 1.8) + 32, 2);
+            string s = f.ToString();
+            crTextBox.Text = s;
         }
     }
 }
