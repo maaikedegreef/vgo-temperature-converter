@@ -31,12 +31,31 @@
         </Style>
     </Window.Resources>
     <StackPanel>
-        <TextBlock Text="Celsius" Style="{StaticResource labelStyle}"/>
-        <TextBox x:Name="celsiusTextBox" Style="{StaticResource textboxStyle}" />
-        <TextBlock Text="Fahrenheit" Style="{StaticResource labelStyle}"/>
-        <TextBox x:Name="fahrenheitTextBox" Style="{StaticResource textboxStyle}" />
-        <Button Content="Convert to Celsius" Click="ConvertToCelsius" Style="{StaticResource buttonStyle}" />
-        <Button Content="Convert to Fahrenheit" Click="ConvertToFahrenheit" Style="{StaticResource buttonStyle}" />
-
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1"  x:Name="celsiusTextBox" Style="{StaticResource textboxStyle}" />
+            <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Content="To Fahrenheit" Click="ConvertToFahrenheit" Style="{StaticResource buttonStyle}" />
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1"  x:Name="fahrenheitTextBox" Style="{StaticResource textboxStyle}" />
+            <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Content="To Celsius" Click="ConvertToCelsius" Style="{StaticResource buttonStyle}" />
+        </Grid>
     </StackPanel>
 </Window>
