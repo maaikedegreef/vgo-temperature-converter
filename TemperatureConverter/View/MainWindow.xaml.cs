@@ -25,21 +25,48 @@ namespace View
             InitializeComponent();
         }
 
-        private void ConvertToCelsius(object sender, RoutedEventArgs e)
-        {
 
-            double f = double.Parse(fahrenheitTextBox.Text);
-            double c = Math.Round((f - 32) * 0.5556,2);
-            string s = c.ToString();
-            celsiusTextBox.Text = s;
-        }
-
-        private void ConvertToFahrenheit(object sender, RoutedEventArgs e)
+        private void ConvertCelciusToFahrenheit(object sender, RoutedEventArgs e)
         {
             double c = double.Parse(celsiusTextBox.Text);
             double f = Math.Round((c * 1.8) + 32, 2);
             string s = f.ToString();
             fahrenheitTextBox.Text = s;
+        }
+
+        private void ConvertFahrenheitToKelvin(object sender, RoutedEventArgs e)
+        {
+            double f = double.Parse(fahrenheitTextBox.Text);
+            double k = Math.Round((f + 459.67) * 5 / 9, 2);
+            string s = k.ToString();
+            kelvinTextBox.Text = s;
+        }
+
+        private void ConvertKelvinToCelcius(object sender, RoutedEventArgs e)
+        {
+            double k = double.Parse(kelvinTextBox.Text);
+            double c = Math.Round(k - 273.15, 2);
+            string s = c.ToString();
+            celsiusTextBox.Text = s;
+        }
+
+
+        private void ConvertFromCelsius(object sender, RoutedEventArgs e)
+        {
+            ConvertCelciusToFahrenheit(sender, e);
+            ConvertFahrenheitToKelvin(sender, e);
+        }
+
+        private void ConvertFromFahrenheit(object sender, RoutedEventArgs e)
+        {
+            ConvertFahrenheitToKelvin(sender, e);
+            ConvertKelvinToCelcius(sender, e);
+        }
+
+        private void ConvertFromKelvin(object sender, RoutedEventArgs e)
+        {
+            ConvertKelvinToCelcius(sender, e);
+            ConvertCelciusToFahrenheit(sender, e);
         }
     }
 }
