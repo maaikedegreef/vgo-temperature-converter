@@ -72,7 +72,6 @@ namespace View
  
         private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            kelvinTextBox.Text = slider.Value.ToString();
             ConvertFromKelvin(sender, e);
         }
     }
