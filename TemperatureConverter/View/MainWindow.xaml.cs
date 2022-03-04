@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,54 +26,35 @@ namespace View
             InitializeComponent();
         }
 
-
-        private void ConvertCelciusToFahrenheit(object sender, RoutedEventArgs e)
-        {
-            double c = double.Parse(celsiusTextBox.Text);
-            double f = Math.Round((c * 1.8) + 32, 2);
-            string s = f.ToString();
-            fahrenheitTextBox.Text = s;
-        }
-
-        private void ConvertFahrenheitToKelvin(object sender, RoutedEventArgs e)
-        {
-            double f = double.Parse(fahrenheitTextBox.Text);
-            double k = Math.Round((f + 459.67) * 5 / 9, 2);
-            string s = k.ToString();
-            kelvinTextBox.Text = s;
-        }
-
-        private void ConvertKelvinToCelcius(object sender, RoutedEventArgs e)
-        {
-            double k = double.Parse(kelvinTextBox.Text);
-            double c = Math.Round(k - 273.15, 2);
-            string s = c.ToString();
-            celsiusTextBox.Text = s;
-        }
-
-
-        private void ConvertFromCelsius(object sender, RoutedEventArgs e)
-        {
-            ConvertCelciusToFahrenheit(sender, e);
-            ConvertFahrenheitToKelvin(sender, e);
-        }
-
-        private void ConvertFromFahrenheit(object sender, RoutedEventArgs e)
-        {
-            ConvertFahrenheitToKelvin(sender, e);
-            ConvertKelvinToCelcius(sender, e);
-        }
-
-        private void ConvertFromKelvin(object sender, RoutedEventArgs e)
-        {
-            ConvertKelvinToCelcius(sender, e);
-            ConvertCelciusToFahrenheit(sender, e);
-        }
-
- 
         private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            ConvertFromKelvin(sender, e);
+            var kelvin = slider.Value;
+            var celsius = kelvin - 273.15;
+            var fahrenheit = celsius * 1.8 + 32;
+
+            var kelvinString = kelvin.ToString();
+            var fahrenheitString = fahrenheit.ToString();
+
+            fahrenheitTextBox.Text = fahrenheitString;
+        }
+    }
+
+    public class CelsiusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var kelvin = (double)value;
+            var celsius = kelvin - 273.15;
+
+            return celsius;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var celsius = double.Parse((string)value);
+            var kelvin = celsius + 273.15;
+
+            return kelvin;
         }
     }
 }
