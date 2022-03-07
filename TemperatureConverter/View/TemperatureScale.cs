@@ -24,5 +24,21 @@ namespace View
                 return temperature;
             }
         }
+
+        public class CelsiusTemperatureScale : ITemperatureScale
+        {
+            // shortened syntax for getter that consits of a sole return statement
+            public string Name => "Celsius";
+
+            public double ConvertFromKelvin(double temperature)
+            {
+                return temperature - 273.15;
+            }
+
+            public double ConvertToKelvin(double temperature)
+            {
+                return temperature + 273.15;
+            }
+        }
     }
 }
