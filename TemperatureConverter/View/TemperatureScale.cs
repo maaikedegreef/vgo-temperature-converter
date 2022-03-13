@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +8,13 @@ namespace View
 {
     internal class TemperatureScale
     {
+        public interface ITemperatureScale
+        {
+            string Name { get; }
+
+            double ConvertToKelvin(double temperature);
+            double ConvertFromKelvin(double temperature);
+        }
 
         public class KelvinTemperatureScale : ITemperatureScale
         {
@@ -58,3 +65,4 @@ namespace View
         }
     }
 }
+*/
