@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Cells
 {
-    public class Cell : INotifyPropertyChanged
+    public class Cell<T> : INotifyPropertyChanged
     {
-        private object contents;
+        private T contents;
 
-        public Cell(object initialContents = null)
+        public Cell(T initialContents = default(T))
         {
             this.contents = initialContents;
         }
 
-        public object Value
+        public T Value
         {
             get
             {
